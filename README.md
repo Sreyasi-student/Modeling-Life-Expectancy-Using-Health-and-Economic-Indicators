@@ -40,29 +40,6 @@ Categorical: `Region` (one-hot encoded, first category dropped)
 6. **Ridge and Lasso** — `alpha` tuned via `GridSearchCV` over `np.logspace(-4, 4, 100)` using `KFold(n_splits=3, shuffle=True, random_state=42)` and `neg_root_mean_squared_error` scoring.
 7. **Model comparison** — OLS, Ridge, Lasso, and PCR evaluated on the same held-out test set using R², RMSE, and MAE.
 
-## Results
-
-| Model | Test R² | Test RMSE | Test MAE | Tuned alpha |
-|---|---|---|---|---|
-| Ridge | 0.9260 | 2.6533 | 2.1618 | 3.3516 |
-| OLS   | 0.9253 | 2.6654 | 2.0682 | — |
-| Lasso | 0.9212 | 2.7377 | 2.1813 | 0.5214 |
-| PCR   | 0.8798 | 3.3804 | 2.8571 | — (11 components, 96.02% variance retained) |
-
-**Best model by test RMSE: Ridge.**
-
-### OLS assumption-check summary
-| Check | Result |
-|---|---|
-| Linearity | Assessed visually via residuals-vs-fitted plot |
-| Normality (Shapiro-Wilk) | statistic 0.9816, p = 0.0511 → do not reject normality at 5% |
-| Homoskedasticity (Breusch-Pagan) | LM stat 30.52, p = 0.1063 → no significant evidence of heteroskedasticity |
-| Independence (Durbin-Watson) | 1.6965 → no substantial autocorrelation |
-| Multicollinearity (VIF) | `Thinness_five_nine_years` (26.48), `Thinness_ten_nineteen_years` (24.18), `Polio` (15.24), `Diphtheria` (13.63) exceed 10 |
-| Influential points (Cook's distance) | max 277.51; 10 observations above the 4/n threshold |
-
-### Lasso variable selection
-Of 22 encoded coefficients, Lasso shrinks 19 to exactly zero, retaining only `Infant_deaths`, `Incidents_HIV`, and `GDP_per_capita`.
 
 ## Requirements
 
@@ -77,13 +54,10 @@ statsmodels
 ```
 
 ## How to run
-
-1. Place `Life-Expectancy-Data-Updated.csv` in the path referenced by the notebook (`/content/...` if using Google Colab, or update `file_path` for a local run).
-2. Run the notebook cells in order — the pipeline fits all preprocessing, PCA, and regularization hyperparameters on the training split only, so cells must execute sequentially.
+Run the notebook cells in order — the pipeline fits all preprocessing, PCA, and regularization hyperparameters on the training split only, so cells must execute sequentially.
 
 ## Notes / Limitations
 
 - No missing-value imputation is performed; the source file has no missing values.
 - The analysis in this notebook uses only the 2003 cross-section of the panel dataset (179 countries), not the full multi-year panel.
 - Several features (`Polio`/`Diphtheria`, and the two thinness measures) show high VIF, indicating multicollinearity in the OLS coefficients; Ridge and Lasso are included in part to address this.
-- Cook's distance flags 10 training observations as influential; these were not removed or investigated further within the notebook.
