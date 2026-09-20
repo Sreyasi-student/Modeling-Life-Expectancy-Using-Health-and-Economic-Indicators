@@ -26,11 +26,6 @@ Multiple linear regression (OLS), Ridge, Lasso, and Principal Component Regressi
 ### Target
 `Life_expectancy`
 
-### Feature engineering
-- `Country` is dropped (one-hot encoding ~200 countries would effectively turn the model into a country-fixed-effects model); `Region` is kept as the categorical geographic variable.
-- `Economy_status_Developed` and `Economy_status_Developing` are collapsed into a single binary column, `Economy_status` (1 = Developing, 0 = Developed), to avoid perfect linear dependence with the intercept.
-- `Under_five_deaths` is dropped due to high correlation with `Infant_deaths`, which is retained.
-
 ### Final predictors (14 numeric + 1 categorical)
 Numeric: `Infant_deaths`, `Alcohol_consumption`, `Hepatitis_B`, `Measles`, `BMI`, `Polio`, `Diphtheria`, `Incidents_HIV`, `GDP_per_capita`, `Population_mln`, `Thinness_ten_nineteen_years`, `Thinness_five_nine_years`, `Schooling`, `Economy_status`
 Categorical: `Region` (one-hot encoded, first category dropped)
