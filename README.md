@@ -19,7 +19,7 @@ Multiple linear regression (OLS), Ridge, Lasso, and Principal Component Regressi
 
 ## Dataset
 
-- Source file: `Life-Expectancy-Data-Updated.csv` (referred to in the notebook as the "clean Life Expectancy WHO Updated dataset")
+- Source file: `Life-Expectancy-Data-Updated.csv`
 - Original shape: 2,864 rows × 21 columns, with no missing values
 - The notebook restricts the analysis to a single year, **`Year == 2003`**, giving 179 countries across 9 regions
 - Columns: `Country`, `Region`, `Year`, `Infant_deaths`, `Under_five_deaths`, `Adult_mortality`, `Alcohol_consumption`, `Hepatitis_B`, `Measles`, `BMI`, `Polio`, `Diphtheria`, `Incidents_HIV`, `GDP_per_capita`, `Population_mln`, `Thinness_ten_nineteen_years`, `Thinness_five_nine_years`, `Schooling`, `Economy_status_Developed`, `Economy_status_Developing`, `Life_expectancy`
