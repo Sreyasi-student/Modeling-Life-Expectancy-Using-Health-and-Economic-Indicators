@@ -5,6 +5,7 @@ Multiple linear regression (OLS), Ridge, Lasso, and Principal Component Regressi
 ## Contents
 
 - `Life_Expectancy_Regression_Final.ipynb` — the analysis notebook (data loading, EDA, preprocessing, modeling, diagnostics, model comparison)
+- `Life_Expectancy_Data_Updated.csv` — dataset sourced from Kaggle
 
 ## Objectives
 
